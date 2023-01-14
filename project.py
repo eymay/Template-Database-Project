@@ -2,7 +2,7 @@ import pandas as pd
 
 fed_files = ["MORTGAGE30US.csv", "RRVRUSQ156N.csv", "CPIAUCSL.csv"]
 
-dfs = [pd.read_csv(f, parse_dates=True, index_col=0) for f in fed_files]
+dfs = [pd.read_csv("Tables/" + f, parse_dates=True, index_col=0) for f in fed_files]
 
 
 dfs[0] #interest rate table
@@ -12,7 +12,7 @@ fed_data = fed_data.ffill().dropna() #forward fill works by holding the known va
 fed_data
 zillow_files = ["Metro_median_sale_price_uc_sfrcondo_week.csv", "Metro_zhvi_uc_sfrcondo_tier_0.33_0.67_month.csv"]
 
-dfs = [pd.read_csv(f) for f in zillow_files]
+dfs = [pd.read_csv("Tables/" + f) for f in zillow_files]
 #dfs[0] #median_sale_price table
 #dfs[1] #zillow home value index
 
@@ -30,7 +30,7 @@ price_data.columns = ["price", "value"]
 from datetime import timedelta
 
 fed_data.index = fed_data.index + timedelta(days=2)
-
+fed_data.to_csv("Tables/fed_data.csv")
 price_data = fed_data.merge(price_data, left_index=True, right_index=True)
 
 price_data.columns = ["interest", "vacancy", "cpi", "price", "value"]
@@ -45,7 +45,7 @@ price_data.plot.line(y="adj_price", use_index=True)
 price_data["next_quarter"] = price_data["adj_price"].shift(-13)
 
 price_data.dropna(inplace=True)
-
+price_data.to_csv("Tables/price_data.csv")
 price_data["change"] = (price_data["next_quarter"] > price_data["adj_price"]).astype(int)
 
 price_data["change"].value_counts()
