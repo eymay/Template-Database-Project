@@ -160,31 +160,10 @@ class Service():
         except:
             return []
 
-
-class CustomerService(Service):
+class Fed_Service(Service):
     def __init__(self):
-        Service.__init__(self, "Customers", Customer)
+        super().__init__("fed_data", fed_data)
 
-class CustomerTransactionService(Service):
+class Price_Service(Service):
     def __init__(self):
-        Service.__init__(self, "CustomerTransactions", CustomerTransactions)
-
-class InvoiceLineService(Service):
-    def __init__(self):
-        Service.__init__(self, "InvoiceLines", InvoiceLines)
-
-class InvoiceService(Service):
-    def __init__(self):
-        Service.__init__(self, "Invoices", Invoices)
-
-class OrderLineService(Service):
-    def __init__(self):
-        Service.__init__(self, "OrderLines", OrderLines)
-
-class OrderService(Service):
-    def __init__(self):
-        Service.__init__(self, "Orders", Orders)
-
-class PeopleService(Service):
-    def __init__(self):
-        Service.__init__(self, "People", People)
+        super().__init__("price_data", price_data)

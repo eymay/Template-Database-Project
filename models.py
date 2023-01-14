@@ -1,30 +1,24 @@
 import copy
 # object representations of table columns are used as reference
-class Customer(object):
+class fed_data(object):
     def __init__(self, row):
-        self.CustomerID = row[0]
-        self.CustomerName = row[1]
-        self.PrimaryContactPersonID = row[2]
-        self.PhoneNumber = row[3]
-        self.WebsiteURL = row[4]
-        self.DeliveryAddressLine1 = row[5]
-        self.DeliveryAddressLine2 = row[6]
+        self.Date = row[0]
+        self.Interest = row[1]
+        self.Vacancy = row[2]
+        self.Inflation = row[3]
 
     def setID(self, id=None):
-        self.id = id
-        return self.id
+        self.Date = id
+        return self.Date
 
     def toDict(self):
-        customer = {
-            'CustomerID': self.CustomerID,
-            'CustomerName': self.CustomerName,
-            'PrimaryContactPersonID': self.PrimaryContactPersonID,
-            'PhoneNumber': self.PhoneNumber,
-            'WebsiteURL': self.WebsiteURL,
-            'DeliveryAddressLine1': self.DeliveryAddressLine1,
-            'DeliveryAddressLine2': self.DeliveryAddressLine2,
+        fed_data = {
+            'Date': self.Date,
+            'Interest': self.Interest,
+            'Vacancy': self.Vacancy,
+            'Inflation': self.Inflation,
         }
-        return customer
+        return fed_data
 
     def get(self):
         return self.toDict()
@@ -33,10 +27,52 @@ class Customer(object):
         return copy.deepcopy(self)
 
     def getNonKeyColumns():
-        return ["CustomerName", "PrimaryContactPersonID", "PhoneNumber", "WebsiteURL", "DeliveryAddressLine1", "DeliveryAddressLine2"]
+        return ["Interest", "Vacancy", "Inflation"]
 
     def getColumns():
-        return ["CustomerID", "CustomerName", "PrimaryContactPersonID", "PhoneNumber", "WebsiteURL", "DeliveryAddressLine1", "DeliveryAddressLine2"]
+        return ["Date", "Interest", "Vacancy", "Inflation"]
+
+class price_data(object):
+    def __init__(self, row):
+        self.Date = row[0]
+        self.Interest = row[1]
+        self.Vacancy = row[2]
+        self.Inflation = row[3]
+        self.Price= row[4]
+        self.Value= row[5]
+        self.Adjusted_Price= row[6]
+        self.Adjusted_Value= row[7]
+        self.Next_Quarter= row[8]
+
+    def setID(self, id=None):
+        self.Date = id
+        return self.Date
+
+    def toDict(self):
+        price_data = {
+            'Date': self.Date,
+            'Interest': self.Interest,
+            'Vacancy': self.Vacancy,
+            'Inflation': self.Inflation,
+            'Price': self.Price,
+            'Value': self.Value,
+            'Adjusted_Price': self.Adjusted_Price,
+            'Adjusted_Value': self.Adjusted_Value,
+            'Next_Quarter': self.Next_Quarter,
+        }
+        return price_data
+
+    def get(self):
+        return self.toDict()
+
+    def getCopy(self):
+        return copy.deepcopy(self)
+
+    def getNonKeyColumns():
+        return ["Interest", "Vacancy", "Inflation", "Price", "Value","Adjusted_Price", "Adjusted_Value", "Next_Quarter" ]
+
+    def getColumns():
+        return ["Date", "Interest", "Vacancy", "Inflation","Price", "Value","Adjusted_Price", "Adjusted_Value", "Next_Quarter" ]
 
 
     

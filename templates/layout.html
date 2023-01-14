@@ -20,13 +20,8 @@
         <div class="site-header__end">
           <nav class="nav">
             <ul class="nav__wrapper mt-3">
-              <li class="nav__item"><a href="{{url_for('People_page', page=1)}}">People </a></li>
-              <li class="nav__item"><a href="{{url_for('Customers_page', page=1)}}">Customers </a></li> 
-              <li class="nav__item"><a href="{{url_for('CustomerTransactions_page', page=1)}}">Customer Transactions </a></li> 
-              <li class="nav__item"><a href="{{url_for('Orders_page', page=1)}}">Orders </a></li>
-              <li class="nav__item"><a href="{{url_for('OrderLines_page', page=1)}}">Order Lines </a></li>
-              <li class="nav__item"><a href="{{url_for('Invoices_page', page=1)}}">Invoices </a></li>
-              <li class="nav__item"><a href="{{url_for('InvoiceLines_page', page=1)}}">Invoices Lines </a></li>
+              <li class="nav__item"><a href="{{url_for('fed_data_page', page=1)}}">Fed Data </a></li>
+              <li class="nav__item"><a href="{{url_for('price_data_page', page=1)}}"> Price Data </a></li> 
             </ul>
           </nav>
         </div>
@@ -34,9 +29,7 @@
     </header>
     {% block content %}
     {% endblock %}   
-    <footer>
-      <small>&copy; itudb2244 </small>
-    </footer>
+
   </body>
   
 </html>
