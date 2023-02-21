@@ -1,19 +1,36 @@
-# itudb2244
+# Template Database Project
+Provides a quick way to setup sqlite database and flask. Uses jinja macros to render html. The project is meant to prioritise reusability and ease of adaptation to new data. 
 
 # How to Run
+### Dependencies
+- Python
+- Flask
+- Sqlite3
 
 `python3 server.py`
 
+It is advised to use a Linux or MacOS machine for bash scripts.
 # Database Creation
-Running import_tables.sh will read the csv files at Tables/ and create import_test.db file at project root directory.
+Running `import_tables.sh` will read the csv files at `Tables/` and create `import_test.db` file at project root directory.
 
 `./import_tables.sh`
 
-CSV files at Tables/ directory are distilled versions of csv's at Tables/full_backup directory. To remove elements drop_unnecessary.sql is run . To remove elements drop_unnecessary.sql is run on. To reset csv's that the database uses run:
+In the case that some columns of your data need to be removed:
+- Place the original csv files at `Tables/full_backup/` directory.
+- Modify `drop_unnecessary.sql` file by adding `DROP` statements for the columns to be removed. 
+- Run `import_bulk.sh` script to populate the Tables directory with the distilled csv files.
 
-`./import_bulk.sh`
+# Adapting to Your Data
+1. Replace example csv files in `Tables/` with your own csv files. 
+- Check [Database Creation](#database-creation) section to generate Sqlite database.
+2. Modify `models.py` to have successful object-table correspondence.
+3. Modify `services/service.py` and `views.py` by adding class definitions for each table.
+4. Modify `server.py` by using the `set_urls()` function for each table. 
+5. Modify `templates/layout.html` to provide links to your table pages from the home page.
+
 
 # Architecture
+Sqlite3 is used as database.
 ## Service
 SQL query generators reside in service.py which can be inherited by any table service class. Add, Update, Delete and Get methods of the parent class Service can be inherited by each table. They use objects in models to get information about columns. 
 ## Models
